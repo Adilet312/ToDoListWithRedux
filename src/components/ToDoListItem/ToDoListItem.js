@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-
+import './ToDoListItem.css';
 const ToDoListItem = ({task}) =>{
     
 
@@ -7,8 +7,8 @@ const ToDoListItem = ({task}) =>{
         <div className = 'task'>
             <h1>{task}</h1>
             <div className = 'buttons'>
-                <button>Mark as comleted</button>
-                <button>Remove</button>
+                <button className = 'isCompleted'>Mark as comleted</button>
+                <button className = 'remove'>Remove</button>
             </div>
         </div>
     )
