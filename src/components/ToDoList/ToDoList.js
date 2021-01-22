@@ -1,14 +1,14 @@
-import React, {Fragment} from 'react';
+import React  from 'react';
 import ToDoListItem from '../ToDoListItem/ToDoListItem.js';
 import ToDoListForm from '../ToDoListForm/ToDoListForm.js';
 import './ToDoList.css';
-const todos = [
+const todos1 = [
     {task:'React',isCompleted: false},
     {task:'Redux',isCompleted: false},
     {task:'JavaScript',isCompleted: false},
     {task:'Python',isCompleted: false}
 ]
-const ToDoList = () => {
+const ToDoList = ({todos=todos1}) => {
     return(
         <section className = 'container'> 
             <ToDoListForm/>
