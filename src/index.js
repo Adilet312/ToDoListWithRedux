@@ -6,8 +6,8 @@ import ToDoList from './components/ToDoList/ToDoList';
 
 
 ReactDOM.render(
-  <Provider>
-    <ToDoList store = {configStore()}/>
+  <Provider store = {configStore()}>
+    <ToDoList/>
   </Provider>,
   document.getElementById('root')
 

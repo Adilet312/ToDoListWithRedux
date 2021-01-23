@@ -7,14 +7,14 @@ const ToDoListForm = ({todos, onSubmitPassed  }) =>{
     const onSubmitTask = (e) =>{
         e.preventDefault();
         onSubmitPassed(input)
-        setTask('');    
-        
+        setTask('');
+
     }
     return(
         <section className = 'inputContainer' >
             <form onSubmit = {(e) => onSubmitTask(e)}>
                 <input type = 'text' placeholder = 'Add task' value = {input} onChange = {(e)=> setTask(e.target.value)}/>
-                <input type = 'submit' value = 'Add task'/> 
+                <input type = 'submit' value = 'Add task'/>
             </form>
         </section>
     )

@@ -2,11 +2,11 @@
 export const ADD_TODO = 'ADD_TODO';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const REMOVE_TODO = 'REMOVE_TODO';
+export const EDIT_TODO = 'EDIT_TODO';
 
-
-export const addTodo = (task) =>({
+export const addTodo = (text) =>({
    type: ADD_TODO,
-   payload: { task } 
+   payload: { text }
 })
 
 export const toggleTodo = (id) =>({
@@ -17,4 +17,10 @@ export const toggleTodo = (id) =>({
 export const removeTodo = (id) =>({
     type: REMOVE_TODO,
     payload: { id }
+})
+
+export const editTodo = ( id, text) =>({
+  type: EDIT_TODO,
+  payload: { text },
+  updatedId: { id }
 })

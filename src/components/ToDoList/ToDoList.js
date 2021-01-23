@@ -1,24 +1,29 @@
 import React  from 'react';
+import { connect } from 'react-redux';
+import { toggleTodo, removeTodo, editTodo } from '../../actions/actions';
 import ToDoListItem from '../ToDoListItem/ToDoListItem.js';
 import ToDoListForm from '../ToDoListForm/ToDoListForm.js';
 import './ToDoList.css';
-const todos1 = [
-    {task:'React',isCompleted: false},
-    {task:'Redux',isCompleted: false},
-    {task:'JavaScript',isCompleted: false},
-    {task:'Python',isCompleted: false}
-]
-const ToDoList = ({todos=todos1}) => {
+
+const ToDoList = ({ listOfTodos, removeTask, toggleTask, editTask }) => {
     return(
-        <section className = 'container'> 
+        <section className = 'container'>
             <ToDoListForm/>
             <ul>
             {
-                todos.map( item => <li><ToDoListItem task = {item.task}/></li>)
+                listOfTodos.map( item => <li><ToDoListItem task = {item} removeTask = {removeTask} toggleTask = {toggleTask} editTask = {editTask}/></li>)
             }
             </ul>
-          
+
         </section>
     )
 }
-export default ToDoList;
+const mapStateToProps = (state) => ({
+    listOfTodos: state.todos
+});
+const mapDispatchToProps = (dispatch) =>({
+  removeTask: (id) => dispatch(removeTodo(id)),
+  toggleTask: (id) => dispatch(toggleTodo(id)),
+  editTask: (id, text) => dispatch(editTodo(id, text))
+})
+export default connect(mapStateToProps,mapDispatchToProps)(ToDoList);
