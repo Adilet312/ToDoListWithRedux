@@ -1,8 +1,5 @@
 
-export const ADD_TODO = 'ADD_TODO';
-export const TOGGLE_TODO = 'TOGGLE_TODO';
-export const REMOVE_TODO = 'REMOVE_TODO';
-export const EDIT_TODO = 'EDIT_TODO';
+import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO, EDIT_TODO } from '../constants/constants';
 
 export const addTodo = (text) =>({
    type: ADD_TODO,
@@ -21,6 +18,7 @@ export const removeTodo = (id) =>({
 
 export const editTodo = ( id, text) =>({
   type: EDIT_TODO,
-  payload: { text },
-  updatedId: { id }
+  payload: { text, id }
+
 })
+//updatedId: { id }

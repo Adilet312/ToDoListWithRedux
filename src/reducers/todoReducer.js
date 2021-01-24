@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, EDIT_TODO } from '../actions/actions';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, EDIT_TODO } from '../constants/constants';
 import uuid from 'react-uuid'
 
 
@@ -24,7 +24,6 @@ export const  todos = (state=[], action) =>{
 
 function applyAddTodo( state, action ){
     const newTodo = Object.assign({},action.payload,{isCompleted: false}, {id: uuid()});
-    console.log("NEW tASK: ",state);
     return state.concat(newTodo);
 
 }
@@ -40,6 +39,6 @@ function applyRemoveTodo(state, action){
 }
 
 function applyUpdateTodo(state, action){
-  const todos = state.map( todo => todo.id === action.updatedId.id ? Object.assign({}, todo, {text: action.payload.text}) : todo);
+  const todos = state.map( todo => todo.id === action.payload.id ? Object.assign({}, todo, {text: action.payload.text}) : todo);
   return todos;
 }

@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from 'redux';
-import { todos } from '../reducers/reducers.js';
+import { todos } from '../reducers/todoReducer.js';
 
 
 const reducers = {
@@ -7,5 +7,4 @@ const reducers = {
 }
 
 const rootReducer = combineReducers(reducers);
-export const configStore = () => createStore(rootReducer)
-console.log('configStore: ',configStore().getState());
+export const configStore = () => createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
