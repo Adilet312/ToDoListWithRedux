@@ -5,3 +5,4 @@ export const EDIT_TODO = 'EDIT_TODO';
 export const SHOW_ALL = 'SHOW_ALL';
 export const SHOW_COMPLETED = 'SHOW_COMPLETED';
 export const SHOW_INCOMPLETED = 'SHOW_INCOMPLETED';
+export const SET_FILTER = 'SET_FILTER';

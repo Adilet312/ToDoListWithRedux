@@ -1,39 +1,44 @@
 import React  from 'react';
 import { connect } from 'react-redux';
-import { toggleTodo, removeTodo, editTodo, showCompleted, showAll, showInCompleted } from '../../actions/actions';
+import { toggleTodo, removeTodo, editTodo, setFilter} from '../../actions/actions';
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_INCOMPLETED } from '../../constants/constants.js';
 import ToDoListItem from '../ToDoListItem/ToDoListItem.js';
 import ToDoListForm from '../ToDoListForm/ToDoListForm.js';
+import Filter from '../Filter/Filter.js';
 import './ToDoList.css';
 
-const ToDoList = ({ listOfTodos, removeTask, toggleTask, editTask,filter,showCompletedTasks, showAllTasks, showInCompletedTasks }) => {
-  console.log("filtered",filter);
+const ToDoList = ({ listOfTodos, removeTask, toggleTask, editTask,filter, setFilterTask}) => {
+    const todo_list = getTodos(filter, listOfTodos);
     return(
         <section className = 'container'>
             <ToDoListForm/>
             <ul>
             {
-                !filter.length ? listOfTodos.map( item => <li><ToDoListItem task = {item} removeTask = {removeTask} toggleTask = {toggleTask} editTask = {editTask}/></li>):filter.map( item => <li><ToDoListItem task = {item} removeTask = {removeTask} toggleTask = {toggleTask} editTask = {editTask}/></li>)
+              todo_list.map( item => <li><ToDoListItem task = {item} removeTask = {removeTask} toggleTask = {toggleTask} editTask = {editTask}/></li>)
             }
             </ul>
-            <section className = 'filter'>
-              <input type = 'submit' value = 'Show all' className = 'show_all' onClick =
-              {()=>showAllTasks(listOfTodos)}/>
-              <input type = 'submit' value = 'Show completed' className = 'show_completed' onClick = {()=>showCompletedTasks(listOfTodos)}/>
-              <input type = 'submit' value = 'Show incompleted' className = 'show_incompleted' onClick = {()=>showInCompletedTasks(listOfTodos)}/>
-            </section>
+            <Filter filter = {filter} setFilterTask = {setFilterTask}/>
         </section>
     )
 }
 const mapStateToProps = (state) => ({
     listOfTodos: state.todos,
-    filter: state.filteredTodos
+    filter: state.filter
 });
 const mapDispatchToProps = (dispatch) =>({
   removeTask: (id) => dispatch(removeTodo(id)),
   toggleTask: (id) => dispatch(toggleTodo(id)),
   editTask: (id, text) => dispatch(editTodo(id, text)),
-  showCompletedTasks: (state) => dispatch(showCompleted(state)),
-  showInCompletedTasks: (state) => dispatch(showInCompleted(state)),
-  showAllTasks: (state) => dispatch(showAll(state))
+  setFilterTask: ( filter) => dispatch(setFilter( filter ))
 })
 export default connect(mapStateToProps,mapDispatchToProps)(ToDoList);
+
+function getTodos(filter, list){
+  if(filter === SHOW_ALL){
+    return list;
+  }else if(filter=== SHOW_COMPLETED){
+    return list.filter( item => item.isCompleted && item);
+  }else if( filter === SHOW_INCOMPLETED){
+    return list.filter( item => !item.isCompleted && item)
+  }
+}

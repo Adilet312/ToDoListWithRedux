@@ -1,29 +1,16 @@
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_INCOMPLETED } from '../constants/constants';
+import { SHOW_ALL, SET_FILTER } from '../constants/constants';
 
-export const todoFilter = (state = [],action) => {
+export const todoFilter = (state = SHOW_ALL ,action) => {
   switch (action.type) {
-    case SHOW_COMPLETED:{
-      return applyShowCompleted(  action )
+    case SET_FILTER:{
+      return applyFilter( state, action );
     }
-    case SHOW_INCOMPLETED:{
-      return applyShowInCompleted( action )
+    default:{
+      return state;
     }
-    case SHOW_ALL:{
-      return applyShowAll(  action )
-    }
-
   }
-  return state;
 }
 
-function applyShowAll(  action ){
-  return action.payload;
-}
-function applyShowCompleted( action ){
-  const todos = action.payload.filter( todo => todo.isCompleted && todo)
-  return todos;
-}
-function applyShowInCompleted( action ){
-  const todos = action.payload.filter( todo => !todo.isCompleted && todo)
-  return todos;
+function applyFilter( state, action ){
+  return action.filter;
 }

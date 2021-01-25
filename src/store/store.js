@@ -5,7 +5,7 @@ import { todoFilter } from '../reducers/filterReducer.js';
 
 const reducers = {
     todos: todoReducer,
-    filteredTodos: todoFilter
+    filter: todoFilter
 }
 
 const rootReducer = combineReducers(reducers);

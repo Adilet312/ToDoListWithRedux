@@ -2,7 +2,7 @@ import React,{ useState } from 'react';
 import { addTodo } from '../../actions/actions';
 import { connect } from 'react-redux';
 import './ToDoListForm.css';
-const ToDoListForm = ({todos, onSubmitPassed  }) =>{
+const ToDoListForm = ({ onSubmitPassed  }) =>{
     const [input, setTask ] = useState('');
     const onSubmitTask = (e) =>{
         e.preventDefault();
@@ -19,12 +19,12 @@ const ToDoListForm = ({todos, onSubmitPassed  }) =>{
         </section>
     )
 }
-const mapStateToProps = (state) => ({
-    todos: state.todos
-});
+// const mapStateToProps = (state) => ({
+//     todos: state.todos
+// });
 const mapDispatchToProps = (dispatch) => ({
     onSubmitPassed: text => dispatch(addTodo(text))
 });
-export default connect(mapStateToProps, mapDispatchToProps)(ToDoListForm);
+export default connect(null, mapDispatchToProps)(ToDoListForm);
 
 //"export default ToDoListForm" replace such that: export default connect()(ToDoListForm)
