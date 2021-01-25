@@ -1,5 +1,5 @@
 
-import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO, EDIT_TODO } from '../constants/constants';
+import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO, EDIT_TODO, SHOW_ALL, SHOW_COMPLETED, SHOW_INCOMPLETED } from '../constants/constants';
 
 export const addTodo = (text) =>({
    type: ADD_TODO,
@@ -21,4 +21,18 @@ export const editTodo = ( id, text) =>({
   payload: { text, id }
 
 })
-//updatedId: { id }
+
+export const showAll = (state) =>({
+  type: SHOW_ALL,
+  payload: state
+})
+
+export const showCompleted = (state) =>({
+  type: SHOW_COMPLETED,
+  payload: state
+})
+
+export const showInCompleted = (state) =>({
+  type: SHOW_INCOMPLETED,
+  payload: state
+})
