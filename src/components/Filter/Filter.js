@@ -1,7 +1,7 @@
 import React  from 'react';
 import '../ToDoList/ToDoList.css';
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_INCOMPLETED } from '../../constants/constants.js';
-const Filter = ({ filter, setFilterTask }) =>{
+const Filter = ({ setFilterTask }) =>{
 
   return(
     <section className = 'filter'>
