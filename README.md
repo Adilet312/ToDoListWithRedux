@@ -19,7 +19,7 @@ These instructions will get you a copy of the project up and running on your loc
 * npm install
 * npm run start
 ### Specifications
-  [min-width:620px](todo.png);
+  ![min-width:620px](todo.png);
 ## Technologies Used
 
 _HTML, CSS, JavaScript,Async functions,React Hooks, IDE Atom, Redux_
