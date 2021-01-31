@@ -1,13 +1,14 @@
 import React  from 'react';
 import { connect } from 'react-redux';
 import { toggleTodo, removeTodo, editTodo, setFilter} from '../../actions/actions';
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_INCOMPLETED } from '../../constants/constants.js';
+import { showAlert } from "../../thunks/thunks";
 import ToDoListItem from '../ToDoListItem/ToDoListItem.js';
 import ToDoListForm from '../ToDoListForm/ToDoListForm.js';
 import Filter from '../Filter/Filter.js';
+import { getStateTodos } from "../../selectors/getStateTodos";
 import './ToDoList.css';
 
-const ToDoList = ({ listOfTodos, removeTask, toggleTask, editTask, setFilterTask}) => {
+const ToDoList = ({ listOfTodos, removeTask, toggleTask, editTask, setFilterTask, onShowAlert}) => {
     return(
         <section className = 'container'>
             <ToDoListForm/>
@@ -28,19 +29,12 @@ const mapDispatchToProps = (dispatch) =>({
   removeTask: (id) => dispatch(removeTodo(id)),
   toggleTask: (id) => dispatch(toggleTodo(id)),
   editTask: (id, text) => dispatch(editTodo(id, text)),
-  setFilterTask: ( filter) => dispatch(setFilter( filter ))
+  setFilterTask: ( filter) => dispatch(setFilter( filter )),
+  onShowAlert: () => dispatch(showAlert())
 })
 export default connect(mapStateToProps,mapDispatchToProps)(ToDoList);
 
-function getStateTodos(state,filter){
-  if(filter === SHOW_ALL){
-    return state;
-  }else if(filter=== SHOW_COMPLETED){
-    return state.filter( item => item.isCompleted && item);
-  }else if( filter === SHOW_INCOMPLETED){
-    return state.filter( item => !item.isCompleted && item)
-  }
-}
+
 // function getTodos(filter, list){
 //   if(filter === SHOW_ALL){
 //     return list;
